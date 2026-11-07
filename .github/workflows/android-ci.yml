@@ -1,0 +1,241 @@
+name: android-ci
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+concurrency:
+  group: android-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+env:
+  # NDK 版本号固定（NDK 预检结论 2026-11-07）：r27c = 27.2.12479018，
+  # 与 core-runtime build.gradle.kts 中 ndkVersion = "27.2.12479018" 严格一致，
+  # 且满足 AGP 8.5.2（要求 r26+）与 CMake 3.22.1 的匹配要求。
+  # 通过 nttld/setup-ndk 预装并导出 ANDROID_NDK_HOME 后，AGP 不会再向
+  # $ANDROID_HOME/ndk/<version> 触发自动下载，避免 setup-ndk 与 AGP 各装一份 NDK。
+  # 注意：core-audio 目前未设 ndkVersion（仅 core-runtime 设置了），若后续补充
+  # 不一致的版本号，AGP 会尝试自动下载该版本 NDK（约 1-2GB，runner 磁盘与时间开销），
+  # 届时应先统一 ndkVersion 而非依赖自动下载。
+  # gradle/actions/setup-gradle@v4 默认缓存 ~/.gradle（含 wrapper 与依赖缓存）；
+  # NDK 不在 gradle-home 内、由 setup-ndk 独立预装，二者路径不重叠、无需去重配置。
+  NDK_VERSION: r27c
+
+jobs:
+  build-debug:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # 试运行 arm64 专项构建矩阵（当前 full/arm64 均走完整构建，后续可在 native 侧按 ABI 拆分）
+        build-variant: [full, arm64]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up NDK ${{ env.NDK_VERSION }}
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: false
+
+      - name: Export ANDROID_NDK_HOME
+        shell: bash
+        run: echo "ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}" >> "$GITHUB_ENV"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      # tee 落盘 last-build.log 供失败时上传；显式 pipefail 保证 tee 不吞退出码
+      - name: Build debug APK (assembleDebug with CMake)
+        working-directory: android-app
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon assembleDebug 2>&1 | tee last-build.log
+
+      - name: Run unit tests
+        working-directory: android-app
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :core-launch:test :core-input:test :core-runtime:testDebugUnitTest 2>&1 | tee -a last-build.log
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports-${{ matrix.build-variant }}
+          path: |
+            android-app/core-launch/build/reports/tests/
+            android-app/core-input/build/reports/tests/
+            android-app/core-runtime/build/reports/tests/
+          if-no-files-found: warn
+
+      - name: Upload debug APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TipCL-debug-${{ matrix.build-variant }}
+          path: android-app/**/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Upload last-build.log on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: last-build-log-${{ matrix.build-variant }}
+          path: android-app/last-build.log
+          if-no-files-found: warn
+
+  native-arm64:
+    # 单独试跑 arm64 native 编译链（CMake/NDK）；矩阵便于后续扩展 x86_64 等 ABI
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        abi: [arm64-v8a]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up NDK ${{ env.NDK_VERSION }}
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: false
+
+      - name: Export ANDROID_NDK_HOME
+        shell: bash
+        run: echo "ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}" >> "$GITHUB_ENV"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build native (${{ matrix.abi }})
+        working-directory: android-app
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :core-runtime:externalNativeBuildDebug 2>&1 | tee last-build.log
+
+      - name: Upload last-build.log on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: last-build-log-native-${{ matrix.abi }}
+          path: android-app/last-build.log
+          if-no-files-found: warn
+
+  build-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up NDK ${{ env.NDK_VERSION }}
+        uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: false
+
+      - name: Export ANDROID_NDK_HOME
+        shell: bash
+        run: echo "ANDROID_NDK_HOME=${{ steps.setup-ndk.outputs.ndk-path }}" >> "$GITHUB_ENV"
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+
+      - name: Build unsigned release APK
+        working-directory: android-app
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon assembleRelease 2>&1 | tee last-build.log
+
+      - name: Run unit tests
+        working-directory: android-app
+        shell: bash
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :core-launch:test :core-input:test :core-runtime:testDebugUnitTest 2>&1 | tee -a last-build.log
+
+      - name: Upload test reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports-release
+          path: |
+            android-app/core-launch/build/reports/tests/
+            android-app/core-input/build/reports/tests/
+            android-app/core-runtime/build/reports/tests/
+          if-no-files-found: warn
+
+      - name: Decode signing keystore
+        run: |
+          echo "${{ secrets.TIPCL_KEYSTORE_BASE64 }}" | base64 -d > "$RUNNER_TEMP/tipcl.keystore"
+
+      - name: Sign release APK with apksigner
+        env:
+          KEYSTORE_PATH: ${{ runner.temp }}/tipcl.keystore
+          KEYSTORE_PASSWORD: ${{ secrets.TIPCL_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.TIPCL_KEY_ALIAS }}
+        run: |
+          APK=$(ls android-app/**/build/outputs/apk/release/*.apk | head -n 1)
+          VERSION=$(grep -oP 'versionName\s*=\s*"\K[^"]+' android-app/app/build.gradle.kts | head -n 1)
+          SIGNED_APK="$RUNNER_TEMP/TipCL-${VERSION}-android.apk"
+          cp "$APK" "$SIGNED_APK"
+          "$ANDROID_HOME/build-tools/34.0.0/apksigner" sign \
+            --ks "$KEYSTORE_PATH" \
+            --ks-key-alias "$KEY_ALIAS" \
+            --ks-pass "env:KEYSTORE_PASSWORD" \
+            "$SIGNED_APK"
+          "$ANDROID_HOME/build-tools/34.0.0/apksigner" verify --verbose "$SIGNED_APK"
+          echo "SIGNED_APK=$SIGNED_APK" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release and upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ runner.temp }}/TipCL-*-android.apk
+          generate_release_notes: true
+
+      - name: Upload last-build.log on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: last-build-log-release
+          path: android-app/last-build.log
+          if-no-files-found: warn

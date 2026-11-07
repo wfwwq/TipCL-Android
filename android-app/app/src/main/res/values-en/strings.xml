@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TipCL</string>
+
+    <!-- GameHostActivity -->
+    <string name="game_host_starting">Starting game process…</string>
+    <string name="game_host_exited">Game process exited (code %1$d)</string>
+    <string name="game_host_error">Failed to start: %1$s</string>
+    <string name="game_host_missing_instance_id">Intent is missing instanceId (%1$s)</string>
+    <string name="game_host_repairing_assets">Repairing missing assets…</string>
+    <string name="game_host_stderr_tail">---- stderr tail ----</string>
+    <string name="stage_resolve_version">Resolving version</string>
+    <string name="stage_resolve_libraries">Resolving libraries</string>
+    <string name="stage_check_assets">Checking assets</string>
+    <string name="stage_provision_runtime">Preparing runtime</string>
+    <string name="stage_build_plan">Building launch plan</string>
+
+    <!-- Launch coordination / validation -->
+    <string name="launch_failed_load">Failed to load instance</string>
+    <string name="repair_assets_count">Repairing %1$d assets</string>
+
+    <!-- Instance list -->
+    <string name="title_instances">TipCL Instances</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_no_instances">No instances yet — tap the button below to create one</string>
+    <string name="action_new_instance">New Instance</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_launch">Launch</string>
+    <string name="action_back">Back</string>
+    <string name="action_next">Next</string>
+    <string name="action_create">Create</string>
+    <string name="action_done">Done</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_save">Save</string>
+    <string name="dialog_delete_instance_title">Delete Instance</string>
+    <string name="dialog_delete_instance_message">Delete instance \"%1$s\"? Its version directory will be removed; shared libraries are kept.</string>
+    <string name="dialog_long_press_hint">Choose an action:</string>
+    <string name="action_manage">Manage (Worlds / Resource Packs)</string>
+    <string name="last_played_at">Last played: %1$s</string>
+    <string name="never_played">Never played</string>
+    <string name="badge_experimental">%1$s · Experimental</string>
+    <string name="loader_experimental">%1$s (experimental)</string>
+    <string name="release_time">Released %1$s</string>
+
+    <!-- Version filter / type -->
+    <string name="filter_all">All</string>
+    <string name="filter_release">Releases</string>
+    <string name="filter_snapshot">Snapshots</string>
+    <string name="version_type_release">Release</string>
+    <string name="version_type_snapshot">Snapshot</string>
+
+    <!-- New instance wizard -->
+    <string name="wizard_title">New Instance (Step %1$d/4)</string>
+    <string name="wizard_pick_version">Choose a Minecraft version (data from the Mojang version manifest)</string>
+    <string name="wizard_refreshing">Refreshing…</string>
+    <string name="wizard_version_count">%1$d versions</string>
+    <string name="wizard_version_hint">Search or type a version</string>
+    <string name="wizard_loading_manifest">Fetching version manifest…</string>
+    <string name="wizard_manual_fallback">No match in the manifest; you can still create \"%1$s\" (must be a valid version)</string>
+    <string name="wizard_selected">Selected</string>
+    <string name="wizard_pick_loader">Choose a mod loader</string>
+    <string name="wizard_loader_hint">Fabric / Quilt install from meta services; Forge is experimental.</string>
+    <string name="wizard_forge_risk">Note: Forge installation is slow (dozens of processor steps run in sequence) and is experimental on Android. You can retry after a failure; completed steps are skipped automatically.</string>
+    <string name="wizard_loader_version_forge">Forge version (e.g. 47.4.28)</string>
+    <string name="wizard_loader_version_quilt">Quilt version (e.g. 0.26.0)</string>
+    <string name="wizard_loader_version_generic">%1$s version (e.g. 0.16.9)</string>
+    <string name="wizard_naming">Name the instance</string>
+    <string name="wizard_name_hint">Instance name</string>
+    <string name="wizard_downloading">Downloading and installing…</string>
+    <string name="wizard_preparing">Preparing…</string>
+    <string name="wizard_phase_version_json">Downloading version JSON…</string>
+    <string name="wizard_phase_client_jar">Downloading client jar…</string>
+    <string name="wizard_phase_libraries">Downloading libraries…</string>
+    <string name="wizard_phase_asset_index">Downloading asset index…</string>
+    <string name="wizard_phase_assets">Downloading game assets…</string>
+    <string name="wizard_phase_forge_setup">Preparing Forge installer…</string>
+    <string name="wizard_phase_forge_processors">Running Forge processors…</string>
+    <string name="wizard_phase_processing">Processing…</string>
+    <string name="wizard_files">Files: %1$d/%2$d</string>
+    <string name="wizard_speed">Speed: %1$.2f MB/s</string>
+    <string name="wizard_done">Installation complete! The instance is ready.</string>
+    <string name="wizard_failed">Installation failed: %1$s</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_max_memory">Max memory: %1$d MB</string>
+    <string name="settings_jvm_args">Extra JVM arguments</string>
+    <string name="settings_sensitivity">Touch sensitivity: %1$.1f x</string>
+    <string name="settings_sound_enabled">Enable sound</string>
+    <string name="game_host_sound_off_hint">Sound is off (enable it in Settings)</string>
+
+    <!-- Instance management: common -->
+    <string name="manage_title">Manage Instance: %1$s</string>
+    <string name="tab_worlds">Worlds</string>
+    <string name="tab_resource_packs">Resource Packs</string>
+    <string name="op_failed_prefix">Operation failed: </string>
+    <string name="op_failed">Operation failed: %1$s</string>
+
+    <!-- Instance management: worlds -->
+    <string name="manage_saves_hint">Worlds live in the instance\'s saves/ directory; backups are stored under the app data backups/ folder.</string>
+    <string name="manage_no_worlds">No worlds yet (saves/ is empty)</string>
+    <string name="manage_world_busy">A task is running for this world — try again later</string>
+    <string name="world_meta">%1$s · %2$d files · modified %3$s</string>
+    <string name="expand_backups">Backups</string>
+    <string name="collapse">Collapse</string>
+    <string name="action_backup">Back Up</string>
+    <string name="action_restore">Restore</string>
+    <string name="backup_title">Back Up World \"%1$s\"</string>
+    <string name="backup_note_hint">Optional note (included in the backup file name). Leave blank to skip.</string>
+    <string name="label_note">Note</string>
+    <string name="action_backup_start">Start Backup</string>
+    <string name="backup_done">Backup complete: %1$s</string>
+    <string name="backups_loading">Loading backups…</string>
+    <string name="no_backups">No backups for this world</string>
+    <string name="backup_meta_note">Note: %1$s</string>
+    <string name="restore_title">Restore World \"%1$s\"</string>
+    <string name="restore_confirm">The backup will be restored to world \"%1$s\". The current state is backed up first as a safety net, so existing progress will not be lost.</string>
+    <string name="action_restore_confirm">Restore</string>
+    <string name="restore_done">World \"%1$s\" restored</string>
+    <string name="delete_backup_title">Delete Backup</string>
+    <string name="delete_backup_confirm">Delete backup \"%1$s\"? This cannot be undone.</string>
+    <string name="backup_stats">Backups: %1$d total, %2$s used</string>
+
+    <!-- Instance management: resource packs -->
+    <string name="resource_packs_hint">Resource packs live in the instance\'s resourcepacks/ directory. After importing, enable them in-game under Options → Resource Packs — Minecraft manages activation itself.</string>
+    <string name="action_import_pack">Import resource pack (.zip)</string>
+    <string name="importing">Importing…</string>
+    <string name="import_done">Imported: %1$s</string>
+    <string name="import_read_failed">Could not read the selected file</string>
+    <string name="no_packs">No resource packs yet — tap the button above to import a zip</string>
+    <string name="corrupted_zip">File is corrupted (zip directory unreadable); it may be an incomplete download</string>
+    <string name="delete_pack_title">Delete Resource Pack</string>
+    <string name="delete_pack_confirm">Delete \"%1$s\"?</string>
+    <string name="pack_meta">%1$s · %2$s</string>
+
+    <!-- Download / install pipeline (state-flow messages shown in the wizard progress page) -->
+    <string name="dl_locating_version">Locating version %1$s</string>
+    <string name="dl_cancelled">Cancelled</string>
+    <string name="dl_fabric_derive">Generating Fabric derived version…</string>
+    <string name="dl_quilt_derive">Generating Quilt derived version…</string>
+    <string name="dl_quilt_fallback">Quilt meta unreachable (offline or blocked); fell back to a local skeleton version. Quilt loader libraries were not downloaded — reinstall the same version once back online to complete them.</string>
+    <string name="dl_forge_download_installer">Downloading Forge installer…</string>
+    <string name="dl_forge_unpack_profile">Unpacking install_profile…</string>
+    <string name="dl_forge_processors_start">Running %1$d processors (slow — please wait)…</string>
+    <string name="dl_forge_no_client_url">The vanilla version provides no client jar URL; Forge cannot be installed</string>
+    <string name="dl_forge_no_version_task">No version-generation task found in install_profile</string>
+    <string name="dl_forge_proc_failed">Forge installation failed at step %1$d (%2$s): %3$s</string>
+    <string name="dl_forge_artifact">Downloading Forge artifact: %1$s</string>
+    <string name="dl_forge_processors_done">All processors finished (previously completed ones were skipped)</string>
+    <string name="dl_no_such_version">Version %1$s does not exist in the manifest</string>
+    <string name="dl_version_json_named">Downloading version JSON: %1$s</string>
+    <string name="dl_client_jar_skipped">No client jar URL provided; skipping</string>
+    <string name="dl_libraries_done">Libraries done: %1$d downloaded (%2$d already present, skipped)</string>
+    <string name="dl_asset_index_skipped">No asset index declared; skipping asset download</string>
+    <string name="dl_assets_batch">Downloading assets (%1$d-%2$d/%3$d)</string>
+    <string name="dl_assets_batch_plain">Downloading assets</string>
+    <string name="dl_assets_done">Assets downloaded: %1$d</string>
+    <string name="dl_assets_done_failures">Assets downloaded with %1$d failures: %2$s</string>
+    <string name="dl_processor_progress">processor %1$d/%2$d: %3$s</string>
+    <string name="dl_and_more"> and more</string>
+
+    <!-- Download errors -->
+    <string name="error_http_download_failed">HTTP %1$d downloading %2$s failed</string>
+    <string name="error_empty_body">Empty response body: %1$s</string>
+    <string name="error_sha1_mismatch">SHA-1 mismatch: %1$s expected %2$s got %3$s</string>
+    <string name="error_forge_no_java_locator">ProvisionedJavaLocator (Java locator for Forge processors) was not injected</string>
+
+    <!-- Version manifest repository -->
+    <string name="repo_offline_cached">Network unavailable — showing cached list</string>
+    <string name="repo_manifest_failed">Could not fetch version manifest: %1$s</string>
+</resources>

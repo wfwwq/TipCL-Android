@@ -1,0 +1,15 @@
+# Gradle
+.gradle/
+build/
+# gradle/wrapper/gradle-wrapper.jar must stay committed for wrapper-validation
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ / Android Studio
+*.iml
+.idea/
+
+# Local config
+local.properties
+
+# Native build artifacts
+.cxx/

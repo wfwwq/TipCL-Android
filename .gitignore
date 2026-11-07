@@ -1,2 +1,8 @@
 dist/
 .tools/
+
+# local build caches
+android-app/tools/
+tools/
+android-app/gradle-home/
+gradle-home/

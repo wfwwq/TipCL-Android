@@ -1,0 +1,26 @@
+{
+  "_comment": "OpenAlProvisioner(RuntimeSource) 样例清单 —— 指向本仓库自建产物。app 装配层把 file:// 替换为真实发布 URL 后再注入 OpenAlProvisioner；sha256 必须与发布产物一致。sha256 对应 buildscript/dist/<abi>/libopenal.so（llvm-strip 后）。归档格式约定：zip 内 lib/<abi>/libopenal.so（与 LocalOpenAlCatalog.SO_NAME_CANDIDATES 对齐）。",
+  "version": "1.23.1",
+  "builtWith": "NDK r27c (27.2.12479018) + cmake 3.22.1, ANDROID_PLATFORM=android-24, -Os, OpenSL ES backend",
+  "provenance": {
+    "sourceUrl": "https://github.com/kcat/openal-soft/archive/refs/tags/1.23.1.tar.gz",
+    "sourceSha256": "dfddf3a1f61059853c625b7bb03de8433b455f2f79f89548cbcbd5edca3d4a4a",
+    "buildScript": "android-app/core-audio/buildscript/build_openal_android.sh"
+  },
+  "sources": [
+    {
+      "url": "file:///android_asset/openal/libopenal-1.23.1-arm64-v8a.zip",
+      "sha256": "REPLACE-WITH-PUBLISHED-ARCHIVE-SHA256",
+      "abi": "arm64-v8a",
+      "version": "1.23.1",
+      "_localDistSha256So": "c0ebd1f867e9b9aa3273ea4391d22605568fd39153109c8591448898d74e4271"
+    },
+    {
+      "url": "file:///android_asset/openal/libopenal-1.23.1-x86_64.zip",
+      "sha256": "REPLACE-WITH-PUBLISHED-ARCHIVE-SHA256",
+      "abi": "x86_64",
+      "version": "1.23.1",
+      "_localDistSha256So": "bd362816bb8e34a1b7ba17f16572eee399da29eca6539e3865620fa0c7907f68"
+    }
+  ]
+}

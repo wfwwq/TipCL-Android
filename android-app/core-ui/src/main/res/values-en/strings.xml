@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ChatInputBar -->
+    <string name="overlay_paste">Paste</string>
+    <string name="overlay_send">Send</string>
+    <string name="overlay_cancel">Cancel</string>
+    <string name="overlay_composing_hint">IME composing: composing text is not injected into the game</string>
+
+    <!-- InputOverlay edit panel / menu -->
+    <string name="overlay_overlap_warning">⚠ %1$d buttons overlap — try dragging them apart</string>
+    <string name="overlay_add_button">Add Button</string>
+    <string name="overlay_reset_default">Reset to Default</string>
+    <string name="overlay_finish">Done</string>
+    <string name="overlay_button_size">%1$s (%2$s) size</string>
+    <string name="overlay_button_opacity">%1$s opacity</string>
+    <string name="overlay_delete_button">Delete button \"%1$s\"</string>
+    <string name="overlay_global_opacity">Global opacity</string>
+    <string name="overlay_joystick_radius">Joystick radius %1$.0f dp</string>
+    <string name="overlay_joystick_deadzone">Joystick dead zone %1$.0f%%</string>
+    <string name="overlay_joystick_floating">Floating Joystick</string>
+    <string name="overlay_reset_layout_title">Reset to default layout?</string>
+    <string name="overlay_reset_layout_text">Your custom layout will be overwritten. This cannot be undone.</string>
+    <string name="overlay_keycode_label">Key code %1$d</string>
+    <string name="overlay_joystick_label">Joystick</string>
+    <string name="overlay_overlap_title">Button areas overlap</string>
+    <string name="overlay_overlap_text">Some buttons\' touch areas cover each other, which may cause accidental presses. Save and exit editing anyway?</string>
+    <string name="overlay_save_anyway">Save Anyway</string>
+    <string name="overlay_back_to_edit">Back to Editing</string>
+    <string name="overlay_menu_title">TipCL Menu</string>
+    <string name="overlay_pause">Pause (ESC)</string>
+    <string name="overlay_main_menu">Main Menu</string>
+    <string name="overlay_look_sensitivity">Look sensitivity: %1$.2f</string>
+    <string name="overlay_edit_layout">Edit Button Layout</string>
+</resources>
