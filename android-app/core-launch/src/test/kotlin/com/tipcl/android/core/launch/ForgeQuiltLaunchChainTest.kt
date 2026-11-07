@@ -172,11 +172,16 @@ class ForgeQuiltLaunchChainTest {
         assertTrue(plan.jvmArgs.any { it.startsWith("-DignoreList=") && it.endsWith("forge-,1.20.1-forge-47.1.0.jar") })
         assertTrue(plan.jvmArgs.any { it.startsWith("-DlibraryDirectory=") && it.contains("libraries") })
         assertTrue(plan.jvmArgs.any { it.startsWith("-Djava.io.tmpdir=") && it.endsWith(nativesDirTail) })
-        // 模块路径（本机为 windows 规则，应生效）且 -p 值中的 library_directory 已替换
+        // 模块路径按规则仅 windows 生效；-p 值中的 library_directory 已替换
+        val isWindows = System.getProperty("os.name").lowercase().contains("windows")
         val pIndex = plan.jvmArgs.indexOf("-p")
-        assertTrue(pIndex >= 0, "windows 下 -p 模块路径应生效")
-        // library_directory 为系统路径（反斜杠），JSON 内路径段保持正斜杠
-        assertTrue(plan.jvmArgs[pIndex + 1].endsWith("/cpw/mods/bootstraplauncher/1.0.0/bootstraplauncher-1.0.0.jar"))
+        if (isWindows) {
+            assertTrue(pIndex >= 0, "windows 下 -p 模块路径应生效")
+            // library_directory 为系统路径（反斜杠），JSON 内路径段保持正斜杠
+            assertTrue(plan.jvmArgs[pIndex + 1].endsWith("/cpw/mods/bootstraplauncher/1.0.0/bootstraplauncher-1.0.0.jar"))
+        } else {
+            assertTrue(pIndex == -1, "非 windows 规则不应注入 -p 模块路径")
+        }
         // 不残留任何未替换占位符
         assertTrue(plan.jvmArgs.none { it.contains("\${'$'}{") }, "jvmArgs 不得残留 \${...} 占位符: ${plan.jvmArgs}")
         // -cp 位于末尾，其后是 game 参数拼接（LaunchPlan 分离存储）

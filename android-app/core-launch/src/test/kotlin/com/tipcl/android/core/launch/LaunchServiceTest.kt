@@ -142,7 +142,8 @@ class LaunchServiceTest {
         )
         // natives 构件进入 resolution.natives
         assertEquals(1, plan.libraryResolution.natives.size)
-        assertEquals("natives-windows", plan.libraryResolution.nativeClassifiers["org.lwjgl:lwjgl:3.2.2"])
+        val expectedClassifier = if (System.getProperty("os.name").lowercase().contains("windows")) "natives-windows" else "natives-linux"
+        assertEquals(expectedClassifier, plan.libraryResolution.nativeClassifiers["org.lwjgl:lwjgl:3.2.2"])
         // natives 目录占位
         assertTrue(plan.nativeLibDir.toString().endsWith("versions/1.20.1-t/natives".replace('/', java.io.File.separatorChar)))
         // JVM 参数含内存、-cp 与 classpath 条目
