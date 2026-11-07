@@ -38,7 +38,7 @@ class LaunchServiceTest {
           },
           "libraries": [
             {"name": "com.mojang:brigadier:1.0.18", "downloads": {"artifact": {"url": "https://libraries.minecraft.net/com/mojang/brigadier/1.0.18/brigadier-1.0.18.jar", "sha1": "abc", "size": 100}}},
-            {"name": "org.lwjgl:lwjgl:3.2.2", "downloads": {"artifact": {"url": "https://libraries.minecraft.net/org/lwjgl/lwjgl/3.2.2/lwjgl-3.2.2.jar", "size": 10}}, "natives": {"windows": "natives-windows"}}
+            {"name": "org.lwjgl:lwjgl:3.2.2", "downloads": {"artifact": {"url": "https://libraries.minecraft.net/org/lwjgl/lwjgl/3.2.2/lwjgl-3.2.2.jar", "size": 10}}, "natives": {"windows": "natives-windows", "linux": "natives-linux"}}
           ],
           "assetIndex": {"id": "8", "url": "https://piston-meta.mojang.com/v1/packages/xx/8.json", "totalSize": 100},
           "javaVersion": {"component": "java-runtime-gamma", "majorVersion": 17}
