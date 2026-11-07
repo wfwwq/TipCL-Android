@@ -1,0 +1,20 @@
+[
+  {"name": "mcp_list_resources", "capability": "resources",
+   "description": "列出这个 MCP 服务器提供的资源（文档、文件、数据等，每项有 uri）和资源模板。要看具体内容再用同一服务器的 mcp_read_resource。",
+   "parameters": {"type": "object", "properties": {"cursor": {"type": "string", "description": "可选：上次结果里的 nextCursor，用来翻下一页"}}}},
+  {"name": "mcp_read_resource", "capability": "resources",
+   "description": "读取这个 MCP 服务器的一个资源（按 uri）。uri 先用 mcp_list_resources 查，或按资源模板填好。",
+   "parameters": {"type": "object", "properties": {"uri": {"type": "string", "description": "资源 uri"}}, "required": ["uri"]}},
+  {"name": "mcp_list_prompts", "capability": "prompts",
+   "description": "列出这个 MCP 服务器提供的提示词模板（名字、说明、参数）。",
+   "parameters": {"type": "object", "properties": {"cursor": {"type": "string", "description": "可选：上次结果里的 nextCursor"}}}},
+  {"name": "mcp_get_prompt", "capability": "prompts",
+   "description": "取出这个 MCP 服务器的一个提示词模板并按参数展开，返回其中的消息内容。名字和参数先用 mcp_list_prompts 查。",
+   "parameters": {"type": "object", "properties": {"name": {"type": "string", "description": "提示词名字"}, "arguments": {"type": "object", "description": "模板参数（键值都是字符串）", "additionalProperties": {"type": "string"}}}, "required": ["name"]}},
+  {"name": "mcp_subscribe_resource", "capability": "resources", "requires": "subscribe",
+   "description": "订阅这个 MCP 服务器的一个资源（按 uri）。资源内容变化时，下一轮会提示你哪些 uri 有更新，再用 mcp_read_resource 读最新内容。",
+   "parameters": {"type": "object", "properties": {"uri": {"type": "string", "description": "资源 uri"}}, "required": ["uri"]}},
+  {"name": "mcp_unsubscribe_resource", "capability": "resources", "requires": "subscribe",
+   "description": "取消订阅这个 MCP 服务器的一个资源（按 uri）。",
+   "parameters": {"type": "object", "properties": {"uri": {"type": "string", "description": "资源 uri"}}, "required": ["uri"]}}
+]

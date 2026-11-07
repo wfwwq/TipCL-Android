@@ -1,0 +1,28 @@
+package org.lwjgl.vulkan;
+
+/* JADX WARN: Classes with same name are omitted:
+  PyMCL-0.9.3-debug-v2.apk:assets/app_runtime/lwjgl/3.3.3/lwjgl-vulkan.jar:org/lwjgl/vulkan/EXTSwapchainColorspace.class
+ */
+/* loaded from: PyMCL-0.9.3-debug-v2.apk:assets/app_runtime/lwjgl/3.4.1/lwjgl-vulkan.jar:org/lwjgl/vulkan/EXTSwapchainColorspace.class */
+public final class EXTSwapchainColorspace {
+    public static final int VK_EXT_SWAPCHAIN_COLOR_SPACE_SPEC_VERSION = 5;
+    public static final String VK_EXT_SWAPCHAIN_COLOR_SPACE_EXTENSION_NAME = "VK_EXT_swapchain_colorspace";
+    public static final int VK_COLOR_SPACE_DISPLAY_P3_NONLINEAR_EXT = 1000104001;
+    public static final int VK_COLOR_SPACE_EXTENDED_SRGB_LINEAR_EXT = 1000104002;
+    public static final int VK_COLOR_SPACE_DISPLAY_P3_LINEAR_EXT = 1000104003;
+    public static final int VK_COLOR_SPACE_DCI_P3_LINEAR_EXT = 1000104003;
+    public static final int VK_COLOR_SPACE_DCI_P3_NONLINEAR_EXT = 1000104004;
+    public static final int VK_COLOR_SPACE_BT709_LINEAR_EXT = 1000104005;
+    public static final int VK_COLOR_SPACE_BT709_NONLINEAR_EXT = 1000104006;
+    public static final int VK_COLOR_SPACE_BT2020_LINEAR_EXT = 1000104007;
+    public static final int VK_COLOR_SPACE_HDR10_ST2084_EXT = 1000104008;
+    public static final int VK_COLOR_SPACE_DOLBYVISION_EXT = 1000104009;
+    public static final int VK_COLOR_SPACE_HDR10_HLG_EXT = 1000104010;
+    public static final int VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT = 1000104011;
+    public static final int VK_COLOR_SPACE_ADOBERGB_NONLINEAR_EXT = 1000104012;
+    public static final int VK_COLOR_SPACE_PASS_THROUGH_EXT = 1000104013;
+    public static final int VK_COLOR_SPACE_EXTENDED_SRGB_NONLINEAR_EXT = 1000104014;
+
+    private EXTSwapchainColorspace() {
+    }
+}

@@ -1,0 +1,38 @@
+.class public final synthetic Lcom/pymcl/android/ui/pages/GamePagesKt$$ExternalSyntheticLambda28;
+.super Ljava/lang/Object;
+.source "D8$$SyntheticClass"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function0;
+
+
+# instance fields
+.field public final synthetic f$0:Lcom/pymcl/android/ui/state/AppState;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lcom/pymcl/android/ui/state/AppState;)V
+    .locals 0
+
+    .line 0
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/pymcl/android/ui/pages/GamePagesKt$$ExternalSyntheticLambda28;->f$0:Lcom/pymcl/android/ui/state/AppState;
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final invoke()Ljava/lang/Object;
+    .locals 1
+
+    .line 0
+    iget-object v0, p0, Lcom/pymcl/android/ui/pages/GamePagesKt$$ExternalSyntheticLambda28;->f$0:Lcom/pymcl/android/ui/state/AppState;
+
+    invoke-static {v0}, Lcom/pymcl/android/ui/pages/GamePagesKt;->$r8$lambda$Xdn-pfehxiG-1M8tBBBf74qEyGI(Lcom/pymcl/android/ui/state/AppState;)Lkotlin/Unit;
+
+    move-result-object v0
+
+    return-object v0
+.end method

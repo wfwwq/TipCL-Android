@@ -1,0 +1,22 @@
+package org.lwjgl.vulkan;
+
+/* loaded from: PyMCL-0.9.3-debug-v2.apk:assets/app_runtime/lwjgl/3.4.1/lwjgl-vulkan.jar:org/lwjgl/vulkan/KHRMaintenance7.class */
+public final class KHRMaintenance7 {
+    public static final int VK_KHR_MAINTENANCE_7_SPEC_VERSION = 1;
+    public static final String VK_KHR_MAINTENANCE_7_EXTENSION_NAME = "VK_KHR_maintenance7";
+    public static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_7_FEATURES_KHR = 1000562000;
+    public static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_MAINTENANCE_7_PROPERTIES_KHR = 1000562001;
+    public static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_LIST_KHR = 1000562002;
+    public static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_PROPERTIES_KHR = 1000562003;
+    public static final int VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_LAYERED_API_VULKAN_PROPERTIES_KHR = 1000562004;
+    public static final int VK_SUBPASS_CONTENTS_INLINE_AND_SECONDARY_COMMAND_BUFFERS_KHR = 1000451000;
+    public static final int VK_RENDERING_CONTENTS_INLINE_BIT_KHR = 16;
+    public static final int VK_PHYSICAL_DEVICE_LAYERED_API_VULKAN_KHR = 0;
+    public static final int VK_PHYSICAL_DEVICE_LAYERED_API_D3D12_KHR = 1;
+    public static final int VK_PHYSICAL_DEVICE_LAYERED_API_METAL_KHR = 2;
+    public static final int VK_PHYSICAL_DEVICE_LAYERED_API_OPENGL_KHR = 3;
+    public static final int VK_PHYSICAL_DEVICE_LAYERED_API_OPENGLES_KHR = 4;
+
+    private KHRMaintenance7() {
+    }
+}

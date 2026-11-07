@@ -1,0 +1,120 @@
+version: 2.10.0
+apkFileName: base.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  tag: null
+sdkInfo:
+  minSdkVersion: 26
+  targetSdkVersion: 35
+packageInfo:
+  forcedPackageId: 127
+  renameManifestPackage: null
+versionInfo:
+  versionCode: 14
+  versionName: 0.9.3
+resourcesAreCompressed: false
+sharedLibrary: false
+sparseResources: false
+unknownFiles:
+  DebugProbesKt.bin: 8
+  pymcl_ai/mcp_builtin_schemas.json: 8
+  pymcl_ai/model_rules.json: 8
+  pymcl_ai/strings_en.json: 8
+  pymcl_ai/tool_schemas.json: 8
+doNotCompress:
+- resources.arsc
+- META-INF/androidx.activity_activity-compose.version
+- META-INF/androidx.activity_activity-ktx.version
+- META-INF/androidx.activity_activity.version
+- META-INF/androidx.annotation_annotation-experimental.version
+- META-INF/androidx.autofill_autofill.version
+- META-INF/androidx.compose.animation_animation-core.version
+- META-INF/androidx.compose.animation_animation.version
+- META-INF/androidx.compose.foundation_foundation-layout.version
+- META-INF/androidx.compose.foundation_foundation.version
+- META-INF/androidx.compose.material3_material3.version
+- META-INF/androidx.compose.material_material-icons-core.version
+- META-INF/androidx.compose.material_material-ripple.version
+- META-INF/androidx.compose.material_material.version
+- META-INF/androidx.compose.runtime_runtime-saveable.version
+- META-INF/androidx.compose.runtime_runtime.version
+- META-INF/androidx.compose.ui_ui-geometry.version
+- META-INF/androidx.compose.ui_ui-graphics.version
+- META-INF/androidx.compose.ui_ui-text.version
+- META-INF/androidx.compose.ui_ui-tooling-data.version
+- META-INF/androidx.compose.ui_ui-tooling-preview.version
+- META-INF/androidx.compose.ui_ui-tooling.version
+- META-INF/androidx.compose.ui_ui-unit.version
+- META-INF/androidx.compose.ui_ui-util.version
+- META-INF/androidx.compose.ui_ui.version
+- META-INF/androidx.core_core-ktx.version
+- META-INF/androidx.core_core-viewtree.version
+- META-INF/androidx.core_core.version
+- META-INF/androidx.customview_customview-poolingcontainer.version
+- META-INF/androidx.emoji2_emoji2.version
+- META-INF/androidx.graphics_graphics-path.version
+- META-INF/androidx.interpolator_interpolator.version
+- META-INF/androidx.lifecycle_lifecycle-livedata-core.version
+- META-INF/androidx.lifecycle_lifecycle-process.version
+- META-INF/androidx.lifecycle_lifecycle-runtime-compose.version
+- META-INF/androidx.lifecycle_lifecycle-runtime-ktx.version
+- META-INF/androidx.lifecycle_lifecycle-runtime.version
+- META-INF/androidx.lifecycle_lifecycle-viewmodel-compose.version
+- META-INF/androidx.lifecycle_lifecycle-viewmodel-ktx.version
+- META-INF/androidx.lifecycle_lifecycle-viewmodel-savedstate.version
+- META-INF/androidx.lifecycle_lifecycle-viewmodel.version
+- META-INF/androidx.navigation_navigation-common.version
+- META-INF/androidx.navigation_navigation-compose.version
+- META-INF/androidx.navigation_navigation-runtime.version
+- META-INF/androidx.profileinstaller_profileinstaller.version
+- META-INF/androidx.savedstate_savedstate-compose.version
+- META-INF/androidx.savedstate_savedstate-ktx.version
+- META-INF/androidx.savedstate_savedstate.version
+- META-INF/androidx.startup_startup-runtime.version
+- META-INF/androidx.tracing_tracing.version
+- META-INF/androidx.versionedparcelable_versionedparcelable.version
+- META-INF/kotlinx_coroutines_android.version
+- META-INF/kotlinx_coroutines_core.version
+- assets/app_runtime/caciocavallo17/cacio-agent.jar
+- assets/app_runtime/caciocavallo17/cacio-shared-1.19.1-SNAPSHOT.jar
+- assets/app_runtime/caciocavallo17/cacio-tta-1.19.1-SNAPSHOT.jar
+- assets/app_runtime/caciocavallo/ResConfHack.jar
+- assets/app_runtime/caciocavallo/cacio-androidnw-1.10-SNAPSHOT.jar
+- assets/app_runtime/caciocavallo/cacio-shared-1.10-SNAPSHOT.jar
+- assets/app_runtime/java/jre17/bin-arm64.tar.xz
+- assets/app_runtime/java/jre17/bin-x86_64.tar.xz
+- assets/app_runtime/java/jre17/universal.tar.xz
+- assets/app_runtime/java/jre21/bin-arm64.tar.xz
+- assets/app_runtime/java/jre21/bin-x86_64.tar.xz
+- assets/app_runtime/java/jre21/universal.tar.xz
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-3.3.3-merged-modules.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-freetype.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-lwjglx.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-nanovg.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-openal.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-shaderc.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-spvc.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-stb.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-tinyfd.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-vma.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl-vulkan.jar
+- assets/app_runtime/lwjgl/3.3.3/lwjgl.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-3.4.1-merged-modules.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-freetype.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-lwjglx.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-nanovg.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-openal.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-shaderc.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-spng.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-spvc.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-stb.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-tinyfd.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-vma.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl-vulkan.jar
+- assets/app_runtime/lwjgl/3.4.1/lwjgl.jar
+- assets/game/HMCLTransformerDiscoveryService-1.0.jar
+- assets/game/MioLaunchWrapper.jar
+- assets/game/MioLibPatcher.jar
+- png

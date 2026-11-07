@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "source": "PyMCL Android built-in (PC resources/PyMCL.Core.ai.model_rules.json 原文未随仓库提供，按公开资料重建；字段名沿用 modelRules/modelApiRules/providerSiteRules)",
+  "defaults": {"contextWindow": 128000, "maxOutput": 8192, "supportsTools": true, "supportsImages": false, "supportsReasoning": false, "supportsTemperature": true},
+  "modelRules": [
+    {"pattern": "^deepseek-(reasoner|r1)", "contextWindow": 128000, "maxOutput": 32768, "supportsTools": false, "supportsReasoning": true, "supportsTemperature": false},
+    {"pattern": "^deepseek-v4", "contextWindow": 1000000, "maxOutput": 65536, "supportsTools": true, "supportsReasoning": true},
+    {"pattern": "^deepseek", "contextWindow": 128000, "maxOutput": 8192, "supportsTools": true},
+    {"pattern": "^(gpt-5|gpt-4\\.1)", "contextWindow": 400000, "maxOutput": 32768, "supportsTools": true, "supportsImages": true},
+    {"pattern": "^(gpt-4o|chatgpt-4o)", "contextWindow": 128000, "maxOutput": 16384, "supportsTools": true, "supportsImages": true},
+    {"pattern": "^o[1-9](-mini|-pro)?", "contextWindow": 200000, "maxOutput": 65536, "supportsTools": true, "supportsImages": true, "supportsReasoning": true, "supportsTemperature": false},
+    {"pattern": "^gpt-3\\.5", "contextWindow": 16000, "maxOutput": 4096, "supportsTools": true},
+    {"pattern": "claude", "contextWindow": 200000, "maxOutput": 32000, "supportsTools": true, "supportsImages": true, "supportsReasoning": true},
+    {"pattern": "gemini-(2|3)", "contextWindow": 1000000, "maxOutput": 65536, "supportsTools": true, "supportsImages": true, "supportsReasoning": true},
+    {"pattern": "gemini", "contextWindow": 128000, "maxOutput": 8192, "supportsTools": true, "supportsImages": true},
+    {"pattern": "^(qwq|qwen.*-thinking|qwen3)", "contextWindow": 131072, "maxOutput": 32768, "supportsTools": true, "supportsReasoning": true},
+    {"pattern": "^qwen-(long)", "contextWindow": 1000000, "maxOutput": 8192, "supportsTools": true},
+    {"pattern": "^qwen.*-vl", "contextWindow": 131072, "maxOutput": 8192, "supportsTools": true, "supportsImages": true},
+    {"pattern": "^qwen", "contextWindow": 131072, "maxOutput": 8192, "supportsTools": true},
+    {"pattern": "^glm-4\\.?[5-9]|^glm-[5-9]", "contextWindow": 128000, "maxOutput": 32768, "supportsTools": true, "supportsReasoning": true},
+    {"pattern": "^glm", "contextWindow": 128000, "maxOutput": 8192, "supportsTools": true},
+    {"pattern": "kimi|moonshot", "contextWindow": 256000, "maxOutput": 16384, "supportsTools": true},
+    {"pattern": "doubao", "contextWindow": 256000, "maxOutput": 16384, "supportsTools": true},
+    {"pattern": "llama-?3|llama3", "contextWindow": 128000, "maxOutput": 4096, "supportsTools": true},
+    {"pattern": "llama|mistral-7b|phi-?[23]", "contextWindow": 8192, "maxOutput": 2048, "supportsTools": false}
+  ],
+  "modelApiRules": [
+    {"pattern": "/pymcl/chat$", "supportsTools": true}
+  ],
+  "providerSiteRules": [
+    {"pattern": "(^|\\.)ollama|:11434", "supportsTools": false, "contextWindow": 8192, "maxOutput": 2048}
+  ]
+}

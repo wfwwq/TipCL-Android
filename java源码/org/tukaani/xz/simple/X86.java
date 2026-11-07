@@ -1,0 +1,36 @@
+package org.tukaani.xz.simple;
+
+import kotlin.UByte;
+
+/* loaded from: classes24.dex */
+public final class X86 implements SimpleFilter {
+    private static final boolean[] MASK_TO_ALLOWED_STATUS = {true, true, true, false, true, false, false, false};
+    private static final int[] MASK_TO_BIT_NUMBER = {0, 1, 2, 2, 3, 3, 3, 3};
+    private final boolean isEncoder;
+    private int pos;
+    private int prevMask = 0;
+
+    public X86(boolean z, int i) {
+        this.isEncoder = z;
+        this.pos = i + 5;
+    }
+
+    private static boolean test86MSByte(byte b) {
+        int i = b & UByte.MAX_VALUE;
+        return i == 0 || i == 255;
+    }
+
+    /* JADX WARN: Removed duplicated region for block: B:32:0x00b6  */
+    @Override // org.tukaani.xz.simple.SimpleFilter
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+        To view partially-correct add '--show-bad-code' argument
+    */
+    public int code(byte[] r11, int r12, int r13) {
+        /*
+            Method dump skipped, instructions count: 213
+            To view this dump add '--comments-level debug' option
+        */
+        throw new UnsupportedOperationException("Method not decompiled: org.tukaani.xz.simple.X86.code(byte[], int, int):int");
+    }
+}
