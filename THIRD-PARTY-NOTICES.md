@@ -28,3 +28,4 @@ To add or update a license entry, extend `LICENSE_TABLE` in the generator script
 | junit:junit | 4.13.2 | EPL-1.0 | https://junit.org/junit4/ |
 | org.jetbrains.kotlin:kotlin-test | 2.0.20 | Apache-2.0 | https://kotlinlang.org/ |
 | org.jetbrains.kotlinx:kotlinx-serialization-json | 1.7.3 | Apache-2.0 | https://github.com/Kotlin/kotlinx.serialization |
+| org.json:json | 20240303 | JSON | https://json.org/ |
