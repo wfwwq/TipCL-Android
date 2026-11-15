@@ -20,7 +20,7 @@ data class LaunchOptions(
     /** 启动器名称，用于 ${launcher_name} 占位。 */
     val launcherName: String = "TipCL",
     /** 启动器版本号，用于 ${launcher_version} 占位。 */
-    val launcherVersion: String = "0.1.0",
+    val launcherVersion: String = "1.2.0",
     /** 游戏工作目录（即实例根）；null 时由调用方决定。 */
     val gameDirectory: String? = null,
     /** 玩家名（离线模式即此名）。 */
