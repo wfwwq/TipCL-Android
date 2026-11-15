@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.tipcl.android"
-version = "0.1.0"
+version = "1.2.0"
 
 android {
     namespace = "com.tipcl.android.core.audio"
