@@ -3,6 +3,13 @@ dist/
 
 # local build caches
 android-app/tools/
-tools/
+# R31:tools/ 下唯一需要入库的是 notices 生成脚本。不能直接写
+# !tools/notices/generate_notices.py —— 父目录被排除后 git 不再进入该目录,
+# 其中任何 pattern(含 !)都不会被求值。故把目录排除弱化成 tools/*,
+# 再用带前导 / 的锚定规则逐层放行,只豁免这一个文件。
+tools/*
+!/tools/notices/
+/tools/notices/*
+!/tools/notices/generate_notices.py
 android-app/gradle-home/
 gradle-home/
