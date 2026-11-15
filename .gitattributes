@@ -1,0 +1,74 @@
+# .gitattributes —— 只把「仓内实测 100% 为 LF」的文本类型钉成 LF,防止结帐端改写换行。
+#
+# 为什么需要这个文件(R31,施工成员 android-trio):
+#   本仓库此前**没有** .gitattributes。部分环境(GitHub Actions 的 windows runner,
+#   或开发机 user 级 gitconfig)会带 core.autocrlf=true;一旦有人在那种环境结帐再回提,
+#   这些文本文件会被整体改写成 CRLF,产生与语义无关的「全文件 diff」。
+#   其中几类还有**功能性**后果,不只是脏 diff:
+#     · .gitignore —— 行尾 CR 会被算进 pattern,导致忽略规则静默失效;
+#     · *.sh       —— 带 CRLF 的 shell 脚本在 Linux 上 "bad interpreter",直接跑不起来;
+#     · *.properties / *.toml / *.kts —— Gradle wrapper 与构建配置,换行漂移属于
+#       「能跑但说不清」的隐性风险。
+#   ⇒ 把这几类钉死 LF。
+#
+# 窄范围纪律(重要):这里**不写** `* text=auto` 之类的全库策略 —— 那会改写整个仓库的
+# 结帐行为,属于用户级决策,而且会打破仓库里既有的 CRLF 文件(见下方排除清单)。
+#
+# ⚠ 本文件语法注意:`gitattributes` **不支持行尾内联注释** —— 规则行后面再写 `# ...`
+#   会被 git 当成属性名解析(报 "# is not a valid attribute name")并整行失效。
+#   所以下面每条规则的说明都写在它**上方**的注释行里,规则行本身只有 pattern + 属性。
+#
+# ── 覆盖清单(以下类型实测 CR 字节数 = 0 ⇒ 钉 LF 后 git 不会重写任何既有文件)──
+#   逐类型实测文件数:
+#     *.json         8 个  (locale_*.json / versions 清单 / AI schema)
+#     *.kts          9 个  (settings.gradle.kts + 7 个模块 build.gradle.kts + 根 build.gradle.kts)
+#     *.pro          2 个  (proguard-rules.pro:app / core-runtime)
+#     *.properties   2 个  (gradle.properties / gradle/wrapper/gradle-wrapper.properties)
+#     *.toml         1 个  (gradle/libs.versions.toml version catalog)
+#     *.sh           1 个  (core-audio/buildscript/build_openal_android.sh)
+#     *.py           1 个  (core-runtime/scripts/gen-jre-source-catalog.py)
+#     *.txt         19 个  (CMakeLists.txt ×2 + assets/versions.txt + licenses/*.txt)
+#     *.csv          1 个  (app/Android/assets/game/version-alias.csv)
+#     *.rst          1 个  (app/Android/assets/licenses/mesa-licenses.rst)
+#     .gitignore     2 个  (仓库根 + 各自的 .gitignore)
+#   验证方式:`git status --porcelain` 在本文件加入前后均为空(仅多出本文件自身的 `??`)。
+#
+# ── 刻意**排除**清单(实测存在 CRLF 文件,写规则会触发一次性重写)──
+#   这些类型一律不加规则,换行保持原样(原本 CRLF 的继续 CRLF):
+#     *.smali   19341 / 19341 含 CR  (补丁/反编译产物,全量 CRLF)
+#     *.java    12785 / 12786 含 CR  (java源码/、重建工具/,近乎全量 CRLF)
+#     *.xml       122 / 134   含 CR  (旧线 app/Android/res/**,及新线 2 个 strings.xml)
+#     *.kt         11 / 106   含 CR
+#     *.bat         6 / 10    含 CR  (scripts/device/*.bat)
+#     *.md          2 / 13    含 CR  (README.md、THIRD-PARTY-NOTICES.md)
+#     *.yml         1 / 3     含 CR  (app/Android/apktool.yml)
+#   注:旧线 app/Android/** 是已发版冻结件。红线口径是「原本 CRLF 的文件保持原样」,
+#   不在这里顺手转换行尾 —— 所以上列类型干脆不写规则,而不是写 eol=crlf 去反向固定。
+#   仓库内不存在 *.gradle 与 *.java 之外的其它构建脚本类型(实测扩展名清单见上)。
+
+# 本文件自身也钉 LF。
+.gitattributes  text eol=lf
+
+# ── 文本类型:固定 LF ──
+*.json         text eol=lf
+*.kts          text eol=lf
+*.pro          text eol=lf
+*.properties   text eol=lf
+*.toml         text eol=lf
+*.sh           text eol=lf
+*.py           text eol=lf
+*.txt          text eol=lf
+*.csv          text eol=lf
+*.rst          text eol=lf
+.gitignore     text eol=lf
+
+# ── 显式声明二进制 ──
+# (git 的启发式本来就会把这些判成 binary;写出来是为了将来万一有人加 `* text=auto` 时,
+#  它们不会被反解成文本。这些声明当前零影响,不改变任何既有文件的结帐结果。)
+*.png          binary
+*.jar          binary
+*.so           binary
+*.keystore     binary
+*.xz           binary
+*.exe          binary
+*.bin          binary
